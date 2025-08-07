@@ -27,3 +27,4 @@ java-25-openjdk-devel
 zsh
 gnome-extensions-app
 flameshot
+btop
