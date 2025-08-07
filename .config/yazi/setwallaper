@@ -1,0 +1,6 @@
+#! /bin/bash
+
+# Apply the selected wallpaper
+swww img "$1" --transition-type random --transition-fps 60 & wal -i "$1" -n -e
+bash "$HOME/.config/waybar/reload"
+swaync-client -rs

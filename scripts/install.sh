@@ -7,7 +7,7 @@
 #                                                  /_/
 clear
 
-location="$HOME/wsl"
+location="$HOME/fedora"
 
 installPackages() {
     sudo dnf install -y $(cat "$location/packages.txt")
@@ -19,16 +19,24 @@ copy_config() {
   if [[ -f "$HOME/.zshrc" ]]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
   fi
+  cp "$location/.zshrc" "$HOME/"
 
   if [[ -d "$HOME/.config" ]]; then
     mv "$HOME/.config" "$HOME/.config.bak"
   fi
   cp -r "$location/.config/" "$HOME/"
 
-  cp "$location/.zshrc" "$HOME/"
+  if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
+    mkdir "$HOME/Pictures/Screenshots"
+  fi
+
+  if [[ ! -d "$HOME/Pictures/" ]]; then
+    mkdir "$HOME/Pictures/"
+  fi
+  cp -r "$location/Wallpaper" "$HOME/Pictures/"
 
   sudo cp "$location/scripts/pullall" "/usr/bin"
-  sudo cp "$location/superfile_app/spf" "/usr/bin"
+  sudo cp -r "$location/fonst" "/usr/share/"
 }
 
 configure_git() {
@@ -70,7 +78,7 @@ cat <<"EOF"
 
 EOF
 
-echo "WSL Setup"
+echo "Post Fedora installation Setup"
 echo -e "${NONE}"
 
 sudo dnf update
@@ -88,6 +96,9 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
+
+flatpak install discord
+flatpak install flathub com.mattjakeman.ExtensionManager
 
 echo -e "${MAGENTA}"
 cat <<"EOF"

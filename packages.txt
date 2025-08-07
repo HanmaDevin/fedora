@@ -10,6 +10,8 @@ xsel
 ssh
 p7zip
 gdb
+google-chrome-stable
+lsd
 jq
 calc
 golang
@@ -20,5 +22,8 @@ fd-find
 sed
 openvpn
 cowsay
-java-25-openjdk.x86_64
+java-25-openjdk
+java-25-openjdk-devel
 zsh
+gnome-extensions-app
+flameshot
