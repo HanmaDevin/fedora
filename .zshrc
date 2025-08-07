@@ -85,7 +85,7 @@ alias paste="xsel -o -b"
 
 alias editzsh="nvim ~/.zshrc"
 
-cowsay -p "Don't forget to pull from github!"
+fastfetch
 
 # visual
 alias open="xdg-open"
