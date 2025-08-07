@@ -28,3 +28,5 @@ zsh
 gnome-extensions-app
 btop
 gnome-tweaks
+mpv
+okular
