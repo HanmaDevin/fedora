@@ -13,6 +13,16 @@ installPackages() {
     sudo dnf install -y $(cat "$location/packages.txt")
 }
 
+installVencord() {
+  echo "Want to install Venord?"
+  vencord=$(gum choose "Yes" "No")
+
+  if [[ "$vencord" == "Yes" ]]; then
+    bash "$location/Vencord/VencordInstaller.sh"
+    cp -r "$location/Vencord/themes" "$HOME/.config/Vencord/"
+  fi
+}
+
 copy_config() {
   gum spin --spinner dot --title "Creating bakups..." -- sleep 2
 
@@ -26,6 +36,8 @@ copy_config() {
   fi
   cp -r "$location/.config/" "$HOME/"
 
+  cp -r "$location/Vencord/themes" "$HOME/.config/Vencord/"
+
   if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
     mkdir "$HOME/Pictures/Screenshots"
   fi
@@ -35,8 +47,10 @@ copy_config() {
   fi
   cp -r "$location/Wallpaper" "$HOME/Pictures/"
 
-  sudo cp "$location/scripts/pullall" "/usr/bin"
+  sudo cp "$location/scripts/pullall" "/usr/sbin"
+  sudo cp "$location/scripts/spf" "/usr/sbin"
   sudo cp -r "$location/fonst" "/usr/share/"
+  sudo cp -r "$location/icons/" "/usr/share/"
 }
 
 configure_git() {
@@ -87,6 +101,7 @@ installPackages
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
 configure_git
+installVencord
 
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh

@@ -102,6 +102,7 @@ alias find="fd --color=always"
 alias ..='z ..'
 # you may also use the following one
 bindkey -s '^o' 'nvim $(fzf)\n'
+bindkey -s '^e' 'spf\n'
 
 # python environments
 alias deac="deactivate"
