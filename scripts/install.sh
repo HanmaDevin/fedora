@@ -19,7 +19,7 @@ installVencord() {
 
   if [[ "$vencord" == "Yes" ]]; then
     bash "$location/Vencord/VencordInstaller.sh"
-    cp -r "$location/Vencord/themes" "$HOME/.config/Vencord/"
+    cp -r "$location/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/"
   fi
 }
 
