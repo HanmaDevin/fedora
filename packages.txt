@@ -21,7 +21,6 @@ neovim
 fd-find
 sed
 openvpn
-cowsay
 java-25-openjdk
 java-25-openjdk-devel
 zsh
