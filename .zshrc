@@ -80,6 +80,8 @@ alias get="sudo dnf install -y"
 alias remove="sudo dnf remove -y"
 alias update="sudo dnf upgrade"
 
+alias pullall="pullall.sh"
+
 alias copy="xsel -i -b"
 alias paste="xsel -o -b"
 

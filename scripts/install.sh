@@ -49,8 +49,9 @@ copy_config() {
 
   sudo cp "$location/scripts/pullall.sh" "/usr/sbin"
   sudo cp "$location/scripts/spf" "/usr/sbin"
-  sudo cp -r "$location/fonst" "/usr/share/"
+  sudo cp -r "$location/fonts" "/usr/share/"
   sudo cp -r "$location/icons/" "/usr/share/"
+  sudo cp -r "$location/themes/" "/usr/share/"
 }
 
 configure_git() {
