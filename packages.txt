@@ -28,3 +28,4 @@ gnome-extensions-app
 btop
 gnome-tweaks
 mpv
+kitty
