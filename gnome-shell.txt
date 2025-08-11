@@ -1,0 +1,49 @@
+org.gnome.shell allow-extension-installation true
+org.gnome.shell always-show-log-out false
+org.gnome.shell app-picker-layout [{'org.gnome.Geary.desktop': <{'position': <0>}>, 'org.gnome.Contacts.desktop': <{'position': <1>}>, 'org.gnome.Weather.desktop': <{'position': <2>}>, 'org.gnome.clocks.desktop': <{'position': <3>}>, 'org.gnome.Maps.desktop': <{'position': <4>}>, 'org.gnome.Music.desktop': <{'position': <5>}>, 'simple-scan.desktop': <{'position': <6>}>, 'org.gnome.Settings.desktop': <{'position': <7>}>, 'org.gnome.Boxes.desktop': <{'position': <8>}>, 'org.gnome.Totem.desktop': <{'position': <9>}>, 'org.gnome.Snapshot.desktop': <{'position': <10>}>, 'org.gnome.Characters.desktop': <{'position': <11>}>, 'Utilities': <{'position': <12>}>, 'System': <{'position': <13>}>, 'org.gnome.Console.desktop': <{'position': <14>}>, 'org.gnome.Tour.desktop': <{'position': <15>}>, 'yelp.desktop': <{'position': <16>}>}]
+org.gnome.shell command-history @as []
+org.gnome.shell development-tools true
+org.gnome.shell disable-extension-version-validation false
+org.gnome.shell disable-user-extensions false
+org.gnome.shell disabled-extensions @as []
+org.gnome.shell enabled-extensions ['background-logo@fedorahosted.org', 'launch-new-instance@gnome-shell-extensions.gcampax.github.com', 'blur-my-shell@aunetx', 'aztaskbar@aztaskbar.gitlab.com', 'arcmenu@arcmenu.com', 'user-theme@gnome-shell-extensions.gcampax.github.com']
+org.gnome.shell favorite-apps ['org.gnome.Nautilus.desktop', 'com.discordapp.Discord.desktop', 'google-chrome.desktop', 'kitty.desktop', 'nvim.desktop', 'org.gnome.Settings.desktop']
+org.gnome.shell last-selected-power-profile 'power-saver'
+org.gnome.shell looking-glass-history @as []
+org.gnome.shell remember-mount-password false
+org.gnome.shell welcome-dialog-last-shown-version '48.4'
+org.gnome.shell.app-switcher current-workspace-only false
+org.gnome.shell.keybindings focus-active-notification ['<Super>n']
+org.gnome.shell.keybindings open-new-window-application-1 ['<Super><Control>1']
+org.gnome.shell.keybindings open-new-window-application-2 ['<Super><Control>2']
+org.gnome.shell.keybindings open-new-window-application-3 ['<Super><Control>3']
+org.gnome.shell.keybindings open-new-window-application-4 ['<Super><Control>4']
+org.gnome.shell.keybindings open-new-window-application-5 ['<Super><Control>5']
+org.gnome.shell.keybindings open-new-window-application-6 ['<Super><Control>6']
+org.gnome.shell.keybindings open-new-window-application-7 ['<Super><Control>7']
+org.gnome.shell.keybindings open-new-window-application-8 ['<Super><Control>8']
+org.gnome.shell.keybindings open-new-window-application-9 ['<Super><Control>9']
+org.gnome.shell.keybindings screenshot ['<Shift>Print']
+org.gnome.shell.keybindings screenshot-window ['<Alt>Print']
+org.gnome.shell.keybindings shift-overview-down ['<Super><Alt>Down']
+org.gnome.shell.keybindings shift-overview-up ['<Super><Alt>Up']
+org.gnome.shell.keybindings show-screen-recording-ui ['<Ctrl><Shift><Alt>R']
+org.gnome.shell.keybindings show-screenshot-ui ['<Super><Shift>s']
+org.gnome.shell.keybindings switch-to-application-1 ['<Super>1']
+org.gnome.shell.keybindings switch-to-application-2 ['<Super>2']
+org.gnome.shell.keybindings switch-to-application-3 ['<Super>3']
+org.gnome.shell.keybindings switch-to-application-4 ['<Super>4']
+org.gnome.shell.keybindings switch-to-application-5 ['<Super>5']
+org.gnome.shell.keybindings switch-to-application-6 ['<Super>6']
+org.gnome.shell.keybindings switch-to-application-7 ['<Super>7']
+org.gnome.shell.keybindings switch-to-application-8 ['<Super>8']
+org.gnome.shell.keybindings switch-to-application-9 ['<Super>9']
+org.gnome.shell.keybindings toggle-application-view ['<Super>a']
+org.gnome.shell.keybindings toggle-message-tray ['<Super>v', '<Super>m']
+org.gnome.shell.keybindings toggle-overview @as []
+org.gnome.shell.keybindings toggle-quick-settings ['<Super>s']
+org.gnome.shell.weather automatic-location true
+org.gnome.shell.weather locations [<(uint32 2, <('Duesseldorf', 'EDDL', false, [(0.89535390627309097, 0.11810061853604713)], @a(dd) [])>)>]
+org.gnome.shell.window-switcher app-icon-mode 'both'
+org.gnome.shell.window-switcher current-workspace-only true
+org.gnome.shell.world-clocks locations @av []
