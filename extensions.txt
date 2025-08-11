@@ -1,4 +1,5 @@
-App Icons Taskbar
 ArcMenu
 Blur my Shell
 User Themes
+Weather O'Clock
+Dash to Dock
