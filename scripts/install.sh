@@ -102,7 +102,6 @@ installPackages
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
 configure_git
-installVencord
 
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
@@ -116,6 +115,7 @@ sudo install lazygit -D -t /usr/local/bin/
 flatpak install discord
 flatpak install flathub com.mattjakeman.ExtensionManager
 
+installVencord
 echo -e "${MAGENTA}"
 cat <<"EOF"
 ____             
