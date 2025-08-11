@@ -131,6 +131,11 @@ flatpak install discord
 flatpak install flathub com.mattjakeman.ExtensionManager
 
 installVencord
+
+hostnamectl hostname $(gum input --prompt="> Set your hostname:" --placeholder="Type your desired hostname name...")
+
+go run "$location/scripts/setsettings.go"
+
 echo -e "${MAGENTA}"
 cat <<"EOF"
 ____             
