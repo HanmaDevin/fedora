@@ -23,6 +23,21 @@ installVencord() {
   fi
 }
 
+detect_nvidia() {
+  gpu=$(lspci | grep -i '.* vga .* nvidia .*')
+
+  shopt -s nocasematch
+
+  if [[ $gpu == *' nvidia '* ]]; then
+    echo "Nvidia GPU is present"
+    gum spin --spinner dot --title "Installaling nvidia drivers now..." -- sleep 2
+    sudo dnf in -y akmod-nvidia xorg-x11-drv-cuda
+  else
+    echo "It seems you are not using a Nvidia GPU"
+    echo "If you have a Nvidia GPU then download the drivers yourself please :)"
+  fi
+}
+
 copy_config() {
   gum spin --spinner dot --title "Creating bakups..." -- sleep 2
 
