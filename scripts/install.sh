@@ -7,10 +7,15 @@
 #                                                  /_/
 clear
 
-location="$HOME/fedora"
+from="$HOME/fedora"
+
+packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "gnome-extensions-app" "btop" "gnome-tweaks" "mpv" "kitty")
 
 installPackages() {
-    sudo dnf install -y $(cat "$location/packages.txt")
+    for package in "${packages[@]}"
+    do
+    	sudo dnf install -y "$package"
+    done
 }
 
 installVencord() {
@@ -18,8 +23,8 @@ installVencord() {
   vencord=$(gum choose "Yes" "No")
 
   if [[ "$vencord" == "Yes" ]]; then
-    bash "$location/Vencord/VencordInstaller.sh"
-    cp -r "$location/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/"
+    bash "$from/Vencord/VencordInstaller.sh"
+    cp -r "$from/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/"
   fi
 }
 
@@ -31,7 +36,7 @@ detect_nvidia() {
   if [[ $gpu == *' nvidia '* ]]; then
     echo "Nvidia GPU is present"
     gum spin --spinner dot --title "Installaling nvidia drivers now..." -- sleep 2
-    sudo dnf in -y akmod-nvidia xorg-x11-drv-cuda
+    sudo dnf in -y wget make gcc-c++ freeglut-devel libXi-devel libXmu-devel mesa-libGLU-devel xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 akmod-nvidia
   else
     echo "It seems you are not using a Nvidia GPU"
     echo "If you have a Nvidia GPU then download the drivers yourself please :)"
@@ -44,14 +49,14 @@ copy_config() {
   if [[ -f "$HOME/.zshrc" ]]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
   fi
-  cp "$location/.zshrc" "$HOME/"
+  cp "$from/.zshrc" "$HOME/"
 
   if [[ -d "$HOME/.config" ]]; then
     mv "$HOME/.config" "$HOME/.config.bak"
   fi
-  cp -r "$location/.config/" "$HOME/"
+  cp -r "$from/.config/" "$HOME/"
 
-  cp -r "$location/Vencord/themes" "$HOME/.config/Vencord/"
+  cp -r "$from/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/themes"
 
   if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
     mkdir "$HOME/Pictures/Screenshots"
@@ -60,13 +65,13 @@ copy_config() {
   if [[ ! -d "$HOME/Pictures/" ]]; then
     mkdir "$HOME/Pictures/"
   fi
-  cp -r "$location/Wallpaper" "$HOME/Pictures/"
+  cp -r "$from/Wallpaper" "$HOME/Pictures/"
 
-  sudo cp "$location/scripts/pullall.sh" "/usr/sbin"
-  sudo cp "$location/scripts/spf" "/usr/sbin"
-  sudo cp -r "$location/fonts" "/usr/share/"
-  sudo cp -r "$location/icons/" "/usr/share/"
-  sudo cp -r "$location/themes/" "/usr/share/"
+  sudo cp "$from/scripts/pullall.sh" "/usr/sbin"
+  sudo cp "$from/scripts/spf" "/usr/sbin"
+  sudo cp -r "$from/fonts" "/usr/share/"
+  sudo cp -r "$from/icons/" "/usr/share/"
+  sudo cp -r "$from/themes/" "/usr/share/"
 }
 
 configure_git() {
@@ -111,16 +116,13 @@ EOF
 echo "Post Fedora installation Setup"
 echo -e "${NONE}"
 
-sudo dnf update
+sudo dnf update -y
 installPackages
 
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
 configure_git
-
-curl -o- https://fnm.vercel.app/install | bash
-curl -fsSL https://ollama.com/install.sh | sh
-curl -fsSL https://starship.rs/install.sh | sudo sh
+detect_nvidia
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -132,9 +134,13 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 installVencord
 
-hostnamectl hostname $(gum input --prompt="> Set your hostname:" --placeholder="Type your desired hostname name...")
+hostnamectl hostname $(gum input --prompt="> Set your hostname:")
 
-go run "$location/scripts/setsettings.go"
+go run "$from/scripts/setsettings.go"
+
+curl -o- https://fnm.vercel.app/install | bash
+curl -fsSL https://ollama.com/install.sh | sh
+curl -fsSL https://starship.rs/install.sh | sudo sh
 
 echo -e "${MAGENTA}"
 cat <<"EOF"
