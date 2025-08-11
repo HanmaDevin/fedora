@@ -9,7 +9,7 @@ clear
 
 from="$HOME/fedora"
 
-packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "gnome-extensions-app" "btop" "gnome-tweaks" "mpv" "kitty")
+packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "gnome-extensions-app" "btop" "gnome-tweaks" "mpv" "kitty" "fastfetch")
 
 installPackages() {
     for package in "${packages[@]}"
