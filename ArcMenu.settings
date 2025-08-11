@@ -1,0 +1,7 @@
+[/]
+distro-icon=2
+menu-button-icon='Distro_Icon'
+prefs-visible-page=0
+recently-installed-apps=['steam.desktop']
+search-entry-border-radius=(true, 25)
+update-notifier-project-version=66

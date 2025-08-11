@@ -36,7 +36,7 @@ detect_nvidia() {
   if [[ $gpu == *' nvidia '* ]]; then
     echo "Nvidia GPU is present"
     gum spin --spinner dot --title "Installaling nvidia drivers now..." -- sleep 2
-    sudo dnf in -y wget make gcc-c++ freeglut-devel libXi-devel libXmu-devel mesa-libGLU-devel xorg-x11-drv-nvidia-libs xorg-x11-drv-nvidia-libs.i686 akmod-nvidia
+    sudo dnf in -y akmod-nvidia xorg-x11-drv-nvidia-cuda
   else
     echo "It seems you are not using a Nvidia GPU"
     echo "If you have a Nvidia GPU then download the drivers yourself please :)"
