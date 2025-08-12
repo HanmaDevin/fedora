@@ -1,5 +1,0 @@
-ArcMenu
-Blur my Shell
-User Themes
-Weather O'Clock
-Dash to Dock

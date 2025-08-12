@@ -7,9 +7,9 @@
 #                                                  /_/
 clear
 
-from="$HOME/fedora"
+repo="$HOME/fedora"
 
-packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "gnome-extensions-app" "btop" "gnome-tweaks" "mpv" "kitty" "fastfetch")
+packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
 
 installPackages() {
     for package in "${packages[@]}"
@@ -23,8 +23,8 @@ installVencord() {
   vencord=$(gum choose "Yes" "No")
 
   if [[ "$vencord" == "Yes" ]]; then
-    bash "$from/Vencord/VencordInstaller.sh"
-    cp -r "$from/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/"
+    bash "$repo/Vencord/VencordInstaller.sh"
+    cp -r "$repo/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/"
   fi
 }
 
@@ -49,14 +49,14 @@ copy_config() {
   if [[ -f "$HOME/.zshrc" ]]; then
     mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
   fi
-  cp "$from/.zshrc" "$HOME/"
+  cp "$repo/.zshrc" "$HOME/"
 
   if [[ -d "$HOME/.config" ]]; then
     mv "$HOME/.config" "$HOME/.config.bak"
   fi
-  cp -r "$from/.config/" "$HOME/"
+  cp -r "$repo/.config/" "$HOME/"
 
-  cp -r "$from/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/themes"
+  cp -r "$repo/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/themes"
 
   if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
     mkdir "$HOME/Pictures/Screenshots"
@@ -65,13 +65,13 @@ copy_config() {
   if [[ ! -d "$HOME/Pictures/" ]]; then
     mkdir "$HOME/Pictures/"
   fi
-  cp -r "$from/Wallpaper" "$HOME/Pictures/"
+  cp -r "$repo/Wallpaper" "$HOME/Pictures/"
 
-  sudo cp "$from/scripts/pullall.sh" "/usr/sbin"
-  sudo cp "$from/scripts/spf" "/usr/sbin"
-  sudo cp -r "$from/fonts" "/usr/share/"
-  sudo cp -r "$from/icons/" "/usr/share/"
-  sudo cp -r "$from/themes/" "/usr/share/"
+  sudo cp "$repo/scripts/pullall.sh" "/usr/sbin"
+  sudo cp "$repo/scripts/spf" "/usr/sbin"
+  sudo cp -r "$repo/fonts" "/usr/share/"
+  sudo cp -r "$repo/icons/" "/usr/share/"
+  sudo cp -r "$repo/themes/" "/usr/share/"
 }
 
 configure_git() {
@@ -118,11 +118,11 @@ echo -e "${NONE}"
 
 sudo dnf update -y
 installPackages
+detect_nvidia
 
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
 configure_git
-detect_nvidia
 
 LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
@@ -130,13 +130,12 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
 flatpak install discord
-flatpak install flathub com.mattjakeman.ExtensionManager
 
 installVencord
 
 hostnamectl hostname $(gum input --prompt="> Set your hostname:")
 
-go run "$from/scripts/setsettings.go"
+go run "$repo/scripts/setsettings.go"
 
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
