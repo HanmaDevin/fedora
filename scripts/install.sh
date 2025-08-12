@@ -9,13 +9,18 @@ clear
 
 repo="$HOME/fedora"
 
-packages=("fedora-workstation-repositories" "wget" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
+packages=("fedora-workstation-repositories" "wget" "python3-pip" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "kvantum" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
 
 installPackages() {
     for package in "${packages[@]}"
     do
     	sudo dnf install -y "$package"
     done
+}
+
+install_catppuccin_theme() {
+  git clone --depth=1 https://github.com/catppuccin/kde "$HOME/catppuccin-kde" && cd "$HOME/catppuccin-kde"
+  bash ./install.sh
 }
 
 installVencord() {
@@ -115,6 +120,7 @@ sudo dnf install \
       https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
       https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf update --refresh
+python3 -m pip install "konsave"
 sudo dnf config-manager setopt google-chrome.enabled=1
 installPackages
 detect_nvidia
@@ -131,6 +137,10 @@ sudo install lazygit -D -t /usr/local/bin/
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
 curl -fsSL https://starship.rs/install.sh | sudo sh
+
+install_catppuccin_theme
+
+konsave -i "$repo/kde.knsv"
 
 echo -e "${MAGENTA}"
 cat <<"EOF"
