@@ -9,7 +9,7 @@ clear
 
 repo="$HOME/fedora"
 
-packages=("wget" "gum" " curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
+packages=("fedora-workstation-repositories" "wget" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
 
 installPackages() {
     for package in "${packages[@]}"
@@ -36,7 +36,7 @@ detect_nvidia() {
   if [[ $gpu == *' nvidia '* ]]; then
     echo "Nvidia GPU is present"
     gum spin --spinner dot --title "Installaling nvidia drivers now..." -- sleep 2
-    sudo dnf in -y akmod-nvidia xorg-x11-drv-nvidia-cuda
+    sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda
   else
     echo "It seems you are not using a Nvidia GPU"
     echo "If you have a Nvidia GPU then download the drivers yourself please :)"
@@ -56,7 +56,7 @@ copy_config() {
   fi
   cp -r "$repo/.config/" "$HOME/"
 
-  cp -r "$repo/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/themes"
+  cp -r "$repo/Vencord/themes" "$HOME/.config/Vencord/"
 
   if [[ ! -d "$HOME/Pictures/" ]]; then
     mkdir "$HOME/Pictures/"
@@ -111,10 +111,13 @@ echo "Post Fedora KDE setup"
 echo -e "${NONE}"
 
 sudo dnf update -y
+sudo dnf install \
+      https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+      https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf update --refresh
+sudo dnf config-manager setopt google-chrome.enabled=1
 installPackages
 detect_nvidia
-flatpak install discord
-installVencord
 
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
@@ -124,8 +127,6 @@ LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/re
 curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
-
-hostnamectl hostname $(gum input --prompt="> Set your hostname:")
 
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
