@@ -9,7 +9,7 @@ clear
 
 repo="$HOME/fedora"
 
-packages=("fedora-workstation-repositories" "wget" "python3-pip" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "kvantum" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "kitty" "fastfetch")
+packages=("fedora-workstation-repositories" "wget" "python3-pip" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "kvantum" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "fastfetch")
 
 installPackages() {
     for package in "${packages[@]}"
