@@ -140,8 +140,6 @@ curl -fsSL https://starship.rs/install.sh | sudo sh
 
 install_catppuccin_theme
 
-konsave -i "$repo/kde.knsv"
-
 echo -e "${MAGENTA}"
 cat <<"EOF"
 ____             
