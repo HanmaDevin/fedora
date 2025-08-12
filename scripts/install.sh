@@ -58,20 +58,14 @@ copy_config() {
 
   cp -r "$repo/Vencord/themes" "$HOME/.var/app/com.discordapp.Discord/config/Vencord/themes"
 
-  if [[ ! -d "$HOME/Pictures/Screenshots" ]]; then
-    mkdir "$HOME/Pictures/Screenshots"
-  fi
-
   if [[ ! -d "$HOME/Pictures/" ]]; then
     mkdir "$HOME/Pictures/"
   fi
-  cp -r "$repo/Wallpaper" "$HOME/Pictures/"
 
   sudo cp "$repo/scripts/pullall.sh" "/usr/sbin"
   sudo cp "$repo/scripts/spf" "/usr/sbin"
   sudo cp -r "$repo/fonts" "/usr/share/"
   sudo cp -r "$repo/icons/" "/usr/share/"
-  sudo cp -r "$repo/themes/" "/usr/share/"
 }
 
 configure_git() {
@@ -113,12 +107,14 @@ cat <<"EOF"
 
 EOF
 
-echo "Post Fedora installation Setup"
+echo "Post Fedora KDE setup"
 echo -e "${NONE}"
 
 sudo dnf update -y
 installPackages
 detect_nvidia
+flatpak install discord
+installVencord
 
 gum spin --spinner dot --title "Starting setup now..." -- sleep 2
 copy_config
@@ -129,13 +125,7 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
-flatpak install discord
-
-installVencord
-
 hostnamectl hostname $(gum input --prompt="> Set your hostname:")
-
-go run "$repo/scripts/setsettings.go"
 
 curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
