@@ -9,7 +9,7 @@ clear
 
 repo="$HOME/fedora"
 
-packages=("fedora-workstation-repositories" "wget" "python3-pip" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "kvantum" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "fastfetch")
+packages=("fedora-workstation-repositories" "wget" "python3-pip" "gum" "discord" "curl" "zip" "zoxide" "fzf" "bat" "ripgrep" "xsel" "ssh" "kvantum" "p7zip" "gdb" "google-chrome-stable" "lsd" "jq" "calc" "golang" "rustup" "texlive-scheme-full" "neovim" "sed" "openvpn" "fd-find" "java-25-openjdk" "java-25-openjdk-devel" "zsh" "btop" "mpv" "fastfetch" "nodejs")
 
 installPackages() {
     for package in "${packages[@]}"
@@ -134,7 +134,6 @@ curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/downl
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit -D -t /usr/local/bin/
 
-curl -o- https://fnm.vercel.app/install | bash
 curl -fsSL https://ollama.com/install.sh | sh
 curl -fsSL https://starship.rs/install.sh | sudo sh
 
