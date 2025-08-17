@@ -66,7 +66,6 @@ copy_config() {
   if [[ ! -d "$HOME/Pictures/" ]]; then
     mkdir "$HOME/Pictures/"
   fi
-  cp -r "$repo/Wallpaper" "$HOME/Pictures/"
 
   sudo cp "$repo/scripts/pullall.sh" "/usr/sbin"
   sudo cp "$repo/scripts/spf" "/usr/sbin"
